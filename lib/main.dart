@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 
 import 'package:getx_intro/user_controller.dart';
 
+import 'data_screen.dart';
+
 void main() {
   runApp(const MyApp());
   Get.lazyPut<UserController>(() {
@@ -47,7 +49,6 @@ class HomePage extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                // Campo de nome
                 Expanded(
                   child: TextField(
                     controller: nameController,
@@ -56,8 +57,6 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // Botão para salvar o nome
                 ElevatedButton(
                   onPressed: () {
                     userController.setUserName(nameController.text);
@@ -67,13 +66,11 @@ class HomePage extends StatelessWidget {
               ],
             ),
 
-            // Espaçamento
             const SizedBox(height: 10),
 
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                // Campo de idade
                 Expanded(
                   child: TextField(
                     controller: ageController,
@@ -82,8 +79,6 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // Botão para salvar a idade
                 ElevatedButton(
                   onPressed: () {
                     userController.setUserAge(int.parse(ageController.text));
@@ -107,54 +102,6 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Tela de dados'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class DataScreen extends GetView<UserController> {
-  // final UserController controller = Get.find();
-
-  const DataScreen({
-    Key? key,
-  }) : super(key: key);
-
-  TextStyle commonStyle() => const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w700,
-      );
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dados'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Apresentação do nome
-            GetX<UserController>(
-              builder: (control) {
-                return Text(
-                  'Nome: ${control.user.value.name}',
-                  style: commonStyle(),
-                );
-              },
-            ),
-
-            // Apresentação da idade
-            GetX<UserController>(
-              builder: (control) {
-                return Text(
-                  'Idade: ${control.user.value.age}',
-                  style: commonStyle(),
-                );
-              },
             ),
           ],
         ),
